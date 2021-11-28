@@ -5,7 +5,7 @@ pipeline{
     
     stage('running HI'){
       steps{
-        echo "Hi"
+        python3 hi.py
       }
     }
   }
