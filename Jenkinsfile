@@ -5,7 +5,7 @@ pipeline{
     
     stage('clean install'){
       steps{
-        sh 'mvn clean install'
+        load 'https://github.com/shambhu1977/Hi.git'
       }
     }
   }
