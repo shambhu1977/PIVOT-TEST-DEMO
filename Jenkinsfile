@@ -3,9 +3,9 @@ pipeline{
   
   stages{
     
-    stage('running HI'){
+    stage('clean install'){
       steps{
-        python3 hi.py
+        sh 'mvn clean install'
       }
     }
   }
