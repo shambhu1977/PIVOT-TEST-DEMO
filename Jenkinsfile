@@ -12,7 +12,7 @@ pipeline{
     stage('Run hi'){
       steps{
         bat '''@echo off
-        "C:\\Python310\\python.exe" "https://github.com/shambhu1977/Hi/blob/master/hi.py"
+        "C:\\Python310\\python.exe" "C:\ProgramData\Jenkins\.jenkins\workspace\TerraformProjectPipeline\hi.py"
         pause'''
       }
     }
