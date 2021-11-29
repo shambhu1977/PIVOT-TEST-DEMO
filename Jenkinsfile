@@ -3,9 +3,9 @@ pipeline{
   
   stages{
     
-    stage('clean install'){
+    stage('install'){
       steps{
-        load 'https://github.com/shambhu1977/Hi.git'
+        git 'https://github.com/shambhu1977/Hi.git'
       }
     }
   }
