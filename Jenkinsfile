@@ -11,7 +11,9 @@ pipeline{
     
     stage('Run hi'){
       steps{
-        bat 'python3 hi.py'
+        bat '''@echo off
+        "C:\\Python310\\python.exe" "https://github.com/shambhu1977/Hi/blob/master/hi.py"
+        pause'''
       }
     }
   }
