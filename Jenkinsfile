@@ -16,5 +16,12 @@ pipeline{
         pause'''
       }
     }
+    stage('Run Hello'){
+      steps{
+        bat '''@echo off
+        "C:\\Python310\\python.exe" "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\TerraformProjectPipeline\\Hello.py"
+        pause'''
+      }
+    }
   }
 }
