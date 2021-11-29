@@ -11,7 +11,7 @@ pipeline{
     
     stage('Run hi'){
       steps{
-        sh 'python3 hi.py'
+        bat 'python3 hi.py'
       }
     }
   }
