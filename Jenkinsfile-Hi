@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Make a new file') {
             steps {
-                bat 'touch hello.txt'
+                sh 'cat hello.txt'
             }
         }
     }
