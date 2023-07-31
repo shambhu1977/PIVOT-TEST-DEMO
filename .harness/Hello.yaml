@@ -123,8 +123,11 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo <+execution.steps.[test].variables.[name]>
-                          environmentVariables: []
+                              script: echo $name
+                          environmentVariables:
+                            - name: name
+                              type: String
+                              value: <+execution.steps.[test].variables.[name]>
                           outputVariables: []
                         timeout: 10m
                     - parallel:
@@ -153,9 +156,15 @@ pipeline:
                                 type: Inline
                                 spec:
                                   script: |-
-                                    echo <+execution.steps.[test].variables.[name]>
-                                    echo <+execution.steps.[test].variables.[age]>
-                              environmentVariables: []
+                                    echo $name
+                                    echo $age
+                              environmentVariables:
+                                - name: name
+                                  type: String
+                                  value: <+execution.steps.[test].variables.[name]>
+                                - name: age
+                                  type: Number
+                                  value: <+execution.steps.[test].variables.[age]>
                               outputVariables: []
                             timeout: 30s
                     - step:
@@ -168,8 +177,11 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo <+execution.steps.[test].variables.[age]>
-                          environmentVariables: []
+                              script: echo $age
+                          environmentVariables:
+                            - name: age
+                              type: Number
+                              value: <+execution.steps.[test].variables.[age]>
                           outputVariables: []
                         timeout: 30s
                   variables:
