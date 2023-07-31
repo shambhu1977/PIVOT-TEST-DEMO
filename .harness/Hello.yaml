@@ -101,3 +101,86 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
+    - stage:
+        name: test
+        identifier: test
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - stepGroup:
+                  name: test
+                  identifier: test
+                  steps:
+                    - step:
+                        type: ShellScript
+                        name: ShellScript_1
+                        identifier: ShellScript_1
+                        spec:
+                          shell: Bash
+                          onDelegate: true
+                          source:
+                            type: Inline
+                            spec:
+                              script: echo ${name}
+                          environmentVariables: []
+                          outputVariables: []
+                        timeout: 10m
+                    - parallel:
+                        - step:
+                            type: ShellScript
+                            name: ShellScript_3
+                            identifier: ShellScript_3
+                            spec:
+                              shell: Bash
+                              onDelegate: true
+                              source:
+                                type: Inline
+                                spec:
+                                  script: echo ""
+                              environmentVariables: []
+                              outputVariables: []
+                            timeout: 10s
+                        - step:
+                            type: ShellScript
+                            name: ShellScript_4
+                            identifier: ShellScript_4
+                            spec:
+                              shell: Bash
+                              onDelegate: true
+                              source:
+                                type: Inline
+                                spec:
+                                  script: "echo \"${name}: ${age}\""
+                              environmentVariables: []
+                              outputVariables: []
+                            timeout: 30s
+                    - step:
+                        type: ShellScript
+                        name: ShellScript_2
+                        identifier: ShellScript_2
+                        spec:
+                          shell: Bash
+                          onDelegate: true
+                          source:
+                            type: Inline
+                            spec:
+                              script: echo ${age}
+                          environmentVariables: []
+                          outputVariables: []
+                        timeout: 30s
+                  variables:
+                    - name: name
+                      type: String
+                      value: Shambhu
+                      description: ""
+                      required: true
+                    - name: age
+                      type: Number
+                      value: 46
+                      description: ""
+                      required: true
+            rollbackSteps: []
+          serviceDependencies: []
+        tags: {}
