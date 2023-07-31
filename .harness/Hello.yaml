@@ -115,15 +115,15 @@ pipeline:
                   steps:
                     - step:
                         type: ShellScript
-                        name: ShellScript_1
-                        identifier: ShellScript_1
+                        name: ShellScript_4_1
+                        identifier: ShellScript_4_1
                         spec:
                           shell: Bash
                           onDelegate: true
                           source:
                             type: Inline
                             spec:
-                              script: echo ${name}
+                              script: echo $name
                           environmentVariables: []
                           outputVariables: []
                         timeout: 10m
@@ -138,7 +138,7 @@ pipeline:
                               source:
                                 type: Inline
                                 spec:
-                                  script: echo ""
+                                  script: echo "Test"
                               environmentVariables: []
                               outputVariables: []
                             timeout: 10s
@@ -152,7 +152,9 @@ pipeline:
                               source:
                                 type: Inline
                                 spec:
-                                  script: "echo \"${name}: ${age}\""
+                                  script: |-
+                                    echo $name
+                                    echo $age
                               environmentVariables: []
                               outputVariables: []
                             timeout: 30s
@@ -166,7 +168,7 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo ${age}
+                              script: echo $age
                           environmentVariables: []
                           outputVariables: []
                         timeout: 30s
