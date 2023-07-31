@@ -123,7 +123,7 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo $name
+                              script: echo <+execution.steps.[test].variables.[name]>
                           environmentVariables: []
                           outputVariables: []
                         timeout: 10m
@@ -153,8 +153,8 @@ pipeline:
                                 type: Inline
                                 spec:
                                   script: |-
-                                    echo $name
-                                    echo $age
+                                    echo <+execution.steps.[test].variables.[name]>
+                                    echo <+execution.steps.[test].variables.[age]>
                               environmentVariables: []
                               outputVariables: []
                             timeout: 30s
@@ -168,7 +168,7 @@ pipeline:
                           source:
                             type: Inline
                             spec:
-                              script: echo $age
+                              script: echo <+execution.steps.[test].variables.[age]>
                           environmentVariables: []
                           outputVariables: []
                         timeout: 30s
