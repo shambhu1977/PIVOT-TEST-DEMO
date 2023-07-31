@@ -1,0 +1,103 @@
+pipeline:
+  name: Hello
+  identifier: Hello
+  projectIdentifier: harnessproject
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Gate
+        identifier: Gate
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_2_1
+                  identifier: ShellScript_2_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "Hello"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - parallel:
+                  - step:
+                      type: Email
+                      name: Email_1
+                      identifier: Email_1
+                      spec:
+                        to: shambhukarkee33@gmail.com
+                        cc: ""
+                        subject: Hello
+                        body: Test
+                      timeout: 10m
+                  - step:
+                      type: ShellScript
+                      name: ShellScript_2
+                      identifier: ShellScript_2
+                      spec:
+                        shell: Bash
+                        onDelegate: true
+                        source:
+                          type: Inline
+                          spec:
+                            script: echo "Email"
+                        environmentVariables: []
+                        outputVariables: []
+                      timeout: 10m
+            rollbackSteps: []
+          serviceDependencies: []
+        tags: {}
+    - stage:
+        name: Check
+        identifier: Check
+        description: ""
+        type: Approval
+        spec:
+          execution:
+            steps:
+              - step:
+                  name: Approve
+                  identifier: Approve
+                  type: HarnessApproval
+                  timeout: 1d
+                  spec:
+                    approvalMessage: |-
+                      Please review the following information
+                      and approve the pipeline progression
+                    includePipelineExecutionHistory: true
+                    approvers:
+                      minimumCount: 1
+                      disallowPipelineExecutor: false
+                      userGroups:
+                        - account._account_all_users
+                    isAutoRejectEnabled: false
+                    approverInputs: []
+              - step:
+                  type: Wait
+                  name: Wait_1
+                  identifier: Wait_1
+                  spec:
+                    duration: 10s
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "Passcheck"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
