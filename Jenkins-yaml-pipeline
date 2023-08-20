@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Make a new file') {
+            steps {
+                sh 'touch hello.txt'
+            }
+        }
+    }
+}
