@@ -1,6 +1,6 @@
 pipeline:
-  name: hi
-  identifier: hi
+  name: test
+  identifier: test
   projectIdentifier: harnessproject
   orgIdentifier: default
   tags: {}
